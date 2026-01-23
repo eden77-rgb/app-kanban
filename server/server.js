@@ -14,9 +14,15 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
+
 app.get("/", (req, res) => {
     res.json({ message: "Hello" })
 })
+
+app.get("/health", (req, res) => {
+    res.json({ status: 200, ok: true })
+})
+
 
 app.listen(port, () => {
     console.log("Serveur démarrer sur : http://localhost:3000")
