@@ -65,10 +65,10 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/form' | '/kanban' | '/task'
+  fullPaths: '/' | '/about' | '/form' | '/kanban' | '/task/$taskId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/form' | '/kanban' | '/task'
-  id: '__root__' | '/' | '/about' | '/form' | '/kanban' | '/task'
+  to: '/' | '/about' | '/form' | '/kanban' | '/task/$taskId'
+  id: '__root__' | '/' | '/about' | '/form' | '/kanban' | '/task/$taskId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {

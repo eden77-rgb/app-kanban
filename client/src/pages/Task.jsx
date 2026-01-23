@@ -17,11 +17,11 @@ export default function Task() {
     }, [taskId])
 
     return (
-        <div>
-            <h1>{task.title}</h1>
-            <p>{task.description}</p>
-            <p>{task.state}</p>
-            <p>{task.assigne}</p>
+        <div className="task-detail-container">
+            <h1 className="task-detail-title">{task.title}</h1>
+            <p className="task-detail-desc">{task.description}</p>
+            <p className="task-detail-status">{task.state}</p>
+            <p className="task-detail-assignee">{task.assigne}</p>
         </div>
     )
 }

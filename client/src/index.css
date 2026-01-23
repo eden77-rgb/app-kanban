@@ -190,3 +190,69 @@
   font-weight: bold;
   min-height: 24px; /* Empêche le saut de page quand le texte apparait */
 }
+
+/* Le conteneur principal (carte centrée) */
+.task-detail-container {
+  max-width: 600px;
+  margin: 50px auto; /* Centre horizontalement avec une marge en haut */
+  background-color: #2a2a2a; /* Même gris que tes colonnes Kanban */
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid #3f3f3f;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Grosse ombre pour l'effet "Focus" */
+  color: #ffffff;
+  font-family: system-ui, sans-serif;
+}
+
+/* Le titre */
+.task-detail-title {
+  margin-top: 0;
+  font-size: 2rem;
+  color: #646cff; /* Touche de violet */
+  margin-bottom: 20px;
+  border-bottom: 2px solid #3f3f3f;
+  padding-bottom: 15px;
+}
+
+/* La description */
+.task-detail-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #d1d1d1;
+  background-color: #1a1a1a; /* Fond légèrement plus foncé pour le texte */
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+/* Le statut (style badge) */
+.task-detail-status {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #3f3f3f;
+  border: 1px solid #646cff;
+  border-radius: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin-right: 15px; /* Espace si l'assigné est à côté */
+  margin-bottom: 10px;
+}
+
+/* L'assigné */
+.task-detail-assignee {
+  display: inline-block;
+  color: #a1a1aa;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* Ajout d'un préfixe "Assigné à :" via CSS pour ne pas toucher ton JSX */
+.task-detail-assignee::before {
+  content: "Assigné à : ";
+  font-weight: normal;
+  color: #666;
+  margin-right: 5px;
+  font-style: normal;
+}
