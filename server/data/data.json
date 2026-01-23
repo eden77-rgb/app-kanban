@@ -20,7 +20,7 @@
     "title": "Développer la page d'accueil React",
     "description": "Créer un composant principal, header et footer",
     "state": "todo",
-    "assignee": "Enzo",
+    "assigne": "Enzo",
     "date": "23-01-2026"
   },
   {
@@ -28,7 +28,7 @@
     "title": "Mettre en place la communication frontend/backend",
     "description": "Créer les appels API et gérer les réponses côté React",
     "state": "todo",
-    "assignee": "Eden",
+    "assigne": "Eden",
     "date": "23-01-2026"
   },
   {
@@ -36,7 +36,7 @@
     "title": "Tester le site et corriger les bugs",
     "description": "Tester toutes les fonctionnalités et corriger les erreurs",
     "state": "todo",
-    "assignee": "All",
+    "assigne": "All",
     "date": "23-01-2026"
   }
 ]
