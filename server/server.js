@@ -2,20 +2,22 @@
 
 const express = require("express")
 const cors = require("cors")
-const { tasks } = require("./tasks")
+const fs = require("fs")
 
 const app = express()
 const port = 3000
 
 const corsOptions = {
     origin: [
-        "http://localhost:5237",
-        "http://127.0.0.1:5173",
+        "http://localhost:5137",
+        "http://127.0.0.1:5137",
     ]
 }
 
 app.use(cors(corsOptions))
+app.use(express.json())
 
+let tasks = JSON.parse(fs.readFileSync("./data/data.json", "utf8"))
 
 app.get("/", (req, res) => {
     res.json({ message: "Hello" })
