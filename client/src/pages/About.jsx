@@ -1,5 +1,5 @@
 export default function About(){
     return (
-        <p>About page</p>
+        <p className="text-3xl font-bold underline">About page</p>
     )
 }
