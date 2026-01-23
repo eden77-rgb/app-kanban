@@ -9,17 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TaskRouteImport } from './routes/task'
 import { Route as KanbanRouteImport } from './routes/kanban'
 import { Route as FormRouteImport } from './routes/form'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TaskTaskIdRouteImport } from './routes/task.$taskId'
 
-const TaskRoute = TaskRouteImport.update({
-  id: '/task',
-  path: '/task',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const KanbanRoute = KanbanRouteImport.update({
   id: '/kanban',
   path: '/kanban',
@@ -40,20 +35,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TaskTaskIdRoute = TaskTaskIdRouteImport.update({
+  id: '/task/$taskId',
+  path: '/task/$taskId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/form': typeof FormRoute
   '/kanban': typeof KanbanRoute
-  '/task': typeof TaskRoute
+  '/task/$taskId': typeof TaskTaskIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/form': typeof FormRoute
   '/kanban': typeof KanbanRoute
-  '/task': typeof TaskRoute
+  '/task/$taskId': typeof TaskTaskIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,7 +61,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/form': typeof FormRoute
   '/kanban': typeof KanbanRoute
-  '/task': typeof TaskRoute
+  '/task/$taskId': typeof TaskTaskIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -76,18 +76,11 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   FormRoute: typeof FormRoute
   KanbanRoute: typeof KanbanRoute
-  TaskRoute: typeof TaskRoute
+  TaskTaskIdRoute: typeof TaskTaskIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/task': {
-      id: '/task'
-      path: '/task'
-      fullPath: '/task'
-      preLoaderRoute: typeof TaskRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/kanban': {
       id: '/kanban'
       path: '/kanban'
@@ -116,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/task/$taskId': {
+      id: '/task/$taskId'
+      path: '/task/$taskId'
+      fullPath: '/task/$taskId'
+      preLoaderRoute: typeof TaskTaskIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -124,7 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   FormRoute: FormRoute,
   KanbanRoute: KanbanRoute,
-  TaskRoute: TaskRoute,
+  TaskTaskIdRoute: TaskTaskIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
