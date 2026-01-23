@@ -19,7 +19,6 @@ export function Column({title})
         fetchData()
     }, [])
 
-    
     return (
         <div>
             <div>
