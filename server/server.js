@@ -39,6 +39,28 @@ app.get("/api/tasks/:id", (req, res) => {
 })
 
 
+app.post("/api/tasks", (req, res) => {
+    const { title, description, state, assigne } = req.body
+    const id = tasks.length + 1
+    const date = new Date()
+    const dateFormat = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+
+    let newTask = {
+        id: id,
+        title: title,
+        description: description,
+        state: state,
+        assigne: assigne,
+        date: dateFormat
+    }
+
+    tasks.push(newTask)
+    fs.writeFileSync("./data/data.json", JSON.stringify(tasks, null, 2))
+
+    res.json({ status: 200, tasks: tasks })
+})
+
+
 app.listen(port, () => {
     console.log("Serveur démarrer sur : http://localhost:3000")
 })

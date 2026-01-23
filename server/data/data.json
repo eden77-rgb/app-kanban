@@ -1,42 +1,42 @@
 [
-    {
-        "id": 1,
-        "title": "Initialiser le projet React",
-        "description": "Créer le projet avec create-react-app et configurer les dépendances de base",
-        "state": "done",
-        "assigne": "Enzo",
-        "date": "23-01-2026"
-    },
-    {
-        "id": 2,
-        "title": "Créer le backend Node/Express",
-        "description": "Mettre en place le serveur, routes et base de données (MongoDB ou SQLite)",
-        "state": "doing",
-        "assigne": "Eden",
-        "date": "23-01-2026"
-    },
-    {
-        "id": 3,
-        "title": "Développer la page d'accueil React",
-        "description": "Créer un composant principal, header et footer",
-        "state": "todo",
-        "assignee": "Enzo",
-        "date": "23-01-2026"
-    },
-    {
-        "id": 4,
-        "title": "Mettre en place la communication frontend/backend",
-        "description": "Créer les appels API et gérer les réponses côté React",
-        "state": "todo",
-        "assignee": "Eden",
-        "date": "23-01-2026"
-    },
-    {
-        "id": 5,
-        "title": "Tester le site et corriger les bugs",
-        "description": "Tester toutes les fonctionnalités et corriger les erreurs",
-        "state": "todo",
-        "assignee": "All",
-        "date": "23-01-2026"
-    }
+  {
+    "id": 1,
+    "title": "Initialiser le projet React",
+    "description": "Créer le projet avec create-react-app et configurer les dépendances de base",
+    "state": "done",
+    "assigne": "Enzo",
+    "date": "23-01-2026"
+  },
+  {
+    "id": 2,
+    "title": "Créer le backend Node/Express",
+    "description": "Mettre en place le serveur, routes et base de données (MongoDB ou SQLite)",
+    "state": "doing",
+    "assigne": "Eden",
+    "date": "23-01-2026"
+  },
+  {
+    "id": 3,
+    "title": "Développer la page d'accueil React",
+    "description": "Créer un composant principal, header et footer",
+    "state": "todo",
+    "assignee": "Enzo",
+    "date": "23-01-2026"
+  },
+  {
+    "id": 4,
+    "title": "Mettre en place la communication frontend/backend",
+    "description": "Créer les appels API et gérer les réponses côté React",
+    "state": "todo",
+    "assignee": "Eden",
+    "date": "23-01-2026"
+  },
+  {
+    "id": 5,
+    "title": "Tester le site et corriger les bugs",
+    "description": "Tester toutes les fonctionnalités et corriger les erreurs",
+    "state": "todo",
+    "assignee": "All",
+    "date": "23-01-2026"
+  }
 ]
