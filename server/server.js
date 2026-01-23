@@ -29,6 +29,13 @@ app.get("/api/tasks", (req, res) => {
     res.json({ status: 200, tasks: tasks })
 })
 
+app.get("/api/tasks/:id", (req, res) => {
+    let id = req.params.id
+    let taskId = tasks.find((task) => { if (task.id == id) { return task } })
+
+    res.json({ status: 200, task: taskId ? taskId : null })
+})
+
 
 app.listen(port, () => {
     console.log("Serveur démarrer sur : http://localhost:3000")
