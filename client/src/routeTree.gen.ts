@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TaskRouteImport } from './routes/task'
 import { Route as KanbanRouteImport } from './routes/kanban'
+import { Route as FormRouteImport } from './routes/form'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -22,6 +23,11 @@ const TaskRoute = TaskRouteImport.update({
 const KanbanRoute = KanbanRouteImport.update({
   id: '/kanban',
   path: '/kanban',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormRoute = FormRouteImport.update({
+  id: '/form',
+  path: '/form',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -38,12 +44,14 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/form': typeof FormRoute
   '/kanban': typeof KanbanRoute
   '/task': typeof TaskRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/form': typeof FormRoute
   '/kanban': typeof KanbanRoute
   '/task': typeof TaskRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/form': typeof FormRoute
   '/kanban': typeof KanbanRoute
   '/task': typeof TaskRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/kanban' | '/task'
+  fullPaths: '/' | '/about' | '/form' | '/kanban' | '/task'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/kanban' | '/task'
-  id: '__root__' | '/' | '/about' | '/kanban' | '/task'
+  to: '/' | '/about' | '/form' | '/kanban' | '/task'
+  id: '__root__' | '/' | '/about' | '/form' | '/kanban' | '/task'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  FormRoute: typeof FormRoute
   KanbanRoute: typeof KanbanRoute
   TaskRoute: typeof TaskRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/kanban'
       fullPath: '/kanban'
       preLoaderRoute: typeof KanbanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/form': {
+      id: '/form'
+      path: '/form'
+      fullPath: '/form'
+      preLoaderRoute: typeof FormRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  FormRoute: FormRoute,
   KanbanRoute: KanbanRoute,
   TaskRoute: TaskRoute,
 }
