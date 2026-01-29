@@ -38,5 +38,21 @@
     "state": "todo",
     "assigne": "All",
     "date": "23-01-2026"
+  },
+  {
+    "id": 6,
+    "title": "Faire le formulaire",
+    "description": "Faire un formulaire pour ajouter une tache",
+    "state": "done",
+    "assigne": "EDEN",
+    "date": "29-1-2026"
+  },
+  {
+    "id": 7,
+    "title": "aaa",
+    "description": "aaa",
+    "state": "todo",
+    "assigne": "EDEN",
+    "date": "29-1-2026"
   }
 ]
