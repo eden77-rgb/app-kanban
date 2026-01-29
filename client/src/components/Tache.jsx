@@ -2,7 +2,6 @@ import { Navigate, useNavigate } from '@tanstack/react-router'
 
 export default function Tache({task})
 {
-    console.log(task.assigne)
     const navigate = useNavigate()
     return (
         <div className="item-container" onClick={() => navigate({to:`/task/${task.id}`})}>
