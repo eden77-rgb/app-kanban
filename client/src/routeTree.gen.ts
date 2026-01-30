@@ -9,25 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as KanbanRouteImport } from './routes/kanban'
-import { Route as FormRouteImport } from './routes/form'
-import { Route as AboutRouteImport } from './routes/about'
+import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TaskTaskIdRouteImport } from './routes/task.$taskId'
+import { Route as LayoutKanbanRouteImport } from './routes/_layout.kanban'
+import { Route as LayoutFormRouteImport } from './routes/_layout.form'
+import { Route as LayoutAboutRouteImport } from './routes/_layout.about'
 
-const KanbanRoute = KanbanRouteImport.update({
-  id: '/kanban',
-  path: '/kanban',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FormRoute = FormRouteImport.update({
-  id: '/form',
-  path: '/form',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const LayoutRoute = LayoutRouteImport.update({
+  id: '/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -40,27 +30,43 @@ const TaskTaskIdRoute = TaskTaskIdRouteImport.update({
   path: '/task/$taskId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LayoutKanbanRoute = LayoutKanbanRouteImport.update({
+  id: '/kanban',
+  path: '/kanban',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutFormRoute = LayoutFormRouteImport.update({
+  id: '/form',
+  path: '/form',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutAboutRoute = LayoutAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => LayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/form': typeof FormRoute
-  '/kanban': typeof KanbanRoute
+  '/about': typeof LayoutAboutRoute
+  '/form': typeof LayoutFormRoute
+  '/kanban': typeof LayoutKanbanRoute
   '/task/$taskId': typeof TaskTaskIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/form': typeof FormRoute
-  '/kanban': typeof KanbanRoute
+  '/about': typeof LayoutAboutRoute
+  '/form': typeof LayoutFormRoute
+  '/kanban': typeof LayoutKanbanRoute
   '/task/$taskId': typeof TaskTaskIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/form': typeof FormRoute
-  '/kanban': typeof KanbanRoute
+  '/_layout': typeof LayoutRouteWithChildren
+  '/_layout/about': typeof LayoutAboutRoute
+  '/_layout/form': typeof LayoutFormRoute
+  '/_layout/kanban': typeof LayoutKanbanRoute
   '/task/$taskId': typeof TaskTaskIdRoute
 }
 export interface FileRouteTypes {
@@ -68,38 +74,29 @@ export interface FileRouteTypes {
   fullPaths: '/' | '/about' | '/form' | '/kanban' | '/task/$taskId'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/about' | '/form' | '/kanban' | '/task/$taskId'
-  id: '__root__' | '/' | '/about' | '/form' | '/kanban' | '/task/$taskId'
+  id:
+    | '__root__'
+    | '/'
+    | '/_layout'
+    | '/_layout/about'
+    | '/_layout/form'
+    | '/_layout/kanban'
+    | '/task/$taskId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  FormRoute: typeof FormRoute
-  KanbanRoute: typeof KanbanRoute
+  LayoutRoute: typeof LayoutRouteWithChildren
   TaskTaskIdRoute: typeof TaskTaskIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/kanban': {
-      id: '/kanban'
-      path: '/kanban'
-      fullPath: '/kanban'
-      preLoaderRoute: typeof KanbanRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/form': {
-      id: '/form'
-      path: '/form'
-      fullPath: '/form'
-      preLoaderRoute: typeof FormRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/_layout': {
+      id: '/_layout'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof LayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -116,14 +113,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TaskTaskIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_layout/kanban': {
+      id: '/_layout/kanban'
+      path: '/kanban'
+      fullPath: '/kanban'
+      preLoaderRoute: typeof LayoutKanbanRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/form': {
+      id: '/_layout/form'
+      path: '/form'
+      fullPath: '/form'
+      preLoaderRoute: typeof LayoutFormRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/about': {
+      id: '/_layout/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof LayoutAboutRouteImport
+      parentRoute: typeof LayoutRoute
+    }
   }
 }
 
+interface LayoutRouteChildren {
+  LayoutAboutRoute: typeof LayoutAboutRoute
+  LayoutFormRoute: typeof LayoutFormRoute
+  LayoutKanbanRoute: typeof LayoutKanbanRoute
+}
+
+const LayoutRouteChildren: LayoutRouteChildren = {
+  LayoutAboutRoute: LayoutAboutRoute,
+  LayoutFormRoute: LayoutFormRoute,
+  LayoutKanbanRoute: LayoutKanbanRoute,
+}
+
+const LayoutRouteWithChildren =
+  LayoutRoute._addFileChildren(LayoutRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  FormRoute: FormRoute,
-  KanbanRoute: KanbanRoute,
+  LayoutRoute: LayoutRouteWithChildren,
   TaskTaskIdRoute: TaskTaskIdRoute,
 }
 export const routeTree = rootRouteImport
