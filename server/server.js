@@ -14,6 +14,11 @@ const corsOptions = {
     ]
 }
 
+
+function getTask(tasks, id) {
+    return tasks.find((task) => { if (task.id == id) { return task } })
+}
+
 app.use(cors(corsOptions))
 app.use(express.json())
 
@@ -33,7 +38,7 @@ app.get("/api/tasks", (req, res) => {
 
 app.get("/api/tasks/:id", (req, res) => {
     let id = req.params.id
-    let taskId = tasks.find((task) => { if (task.id == id) { return task } })
+    let taskId = getTask(tasks, id)
 
     res.json({ status: 200, task: taskId ? taskId : null })
 })
@@ -61,6 +66,17 @@ app.post("/api/tasks", (req, res) => {
 })
 
 
+app.patch("/api/tasks/:id", (req, res) => {
+    const { state } = req.body
+    const task = getTask(tasks, req.params.id)
+
+    task.state = state
+    fs.writeFileSync("./data/data.json", JSON.stringify(tasks, null, 2))
+
+    res.json({ status: 200, tasks: tasks })
+})
+
+
 app.listen(port, () => {
-    console.log("Serveur démarrer sur : http://localhost:3000")
+    console.log("Serveur démarré sur : http://localhost:3000")
 })
