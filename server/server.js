@@ -85,6 +85,7 @@ app.delete("/api/tasks/:id", (req, res) => {
     let index = tasks.findIndex(task => task.id == taskDelete.id)
     tasks.splice(index, 1)
 
+    fs.writeFileSync("./data/data.json", JSON.stringify(tasks, null, 2))
     res.json({ status: 200, tasks: tasks })
 })
 
