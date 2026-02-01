@@ -19,10 +19,11 @@ function getTask(tasks, id) {
     return tasks.find((task) => { if (task.id == id) { return task } })
 }
 
+let tasks = JSON.parse(fs.readFileSync("./data/data.json", "utf8"))
+
 app.use(cors(corsOptions))
 app.use(express.json())
 
-let tasks = JSON.parse(fs.readFileSync("./data/data.json", "utf8"))
 
 app.get("/", (req, res) => {
     res.json({ message: "Hello" })
@@ -76,6 +77,16 @@ app.patch("/api/tasks/:id", (req, res) => {
     res.json({ status: 200, tasks: tasks })
 })
 
+
+app.delete("/api/tasks/:id", (req, res) => {
+    const id = req.params.id
+    const taskDelete = getTask(tasks, id)
+
+    let index = tasks.findIndex(task => task.id == taskDelete.id)
+    tasks.splice(index, 1)
+
+    res.json({ status: 200, tasks: tasks })
+})
 
 app.listen(port, () => {
     console.log("Serveur démarré sur : http://localhost:3000")
