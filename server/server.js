@@ -3,6 +3,7 @@
 const express = require("express")
 const cors = require("cors")
 const fs = require("fs")
+const { error } = require("console")
 
 const app = express()
 const port = 3000
@@ -19,7 +20,14 @@ function getTask(tasks, id) {
     return tasks.find((task) => { if (task.id == id) { return task } })
 }
 
-let tasks = JSON.parse(fs.readFileSync("./data/data.json", "utf8"))
+let tasks
+
+try {
+    tasks = JSON.parse(fs.readFileSync("./data/data.json", "utf8"))
+
+} catch (error) {
+    tasks = null
+}
 
 app.use(cors(corsOptions))
 app.use(express.json())
@@ -30,26 +38,67 @@ app.get("/", (req, res) => {
 })
 
 app.get("/health", (req, res) => {
+    if (!tasks) {
+        return res.json({ status: 500, ok: false, error: "Internal Server Error" })
+    }
+
     res.json({ status: 200, ok: true })
 })
 
 app.get("/api/tasks", (req, res) => {
-    res.json({ status: 200, tasks: tasks })
+    if (!tasks) {
+        return res.json({ status: 500, ok: false, error: "Internal Server Error" })
+    }
+
+    res.json({ status: 200, ok: true, tasks: tasks })
 })
 
 app.get("/api/tasks/:id", (req, res) => {
+    if (!tasks) {
+        res.json({ status: 500, ok: false, error: "Internal Server Error" })
+    }
+
     let id = req.params.id
     let taskId = getTask(tasks, id)
+    if (!taskId) {
+        return res.json({ status: 404, ok: false, error: "Not Found" })
 
-    res.json({ status: 200, task: taskId ? taskId : null })
+    }
+
+    res.json({ status: 200, ok: true, task: taskId })
 })
 
 
 app.post("/api/tasks", (req, res) => {
+    if (!tasks) {
+        return res.json({ status: 500, ok: false, error: "Internal Server Error" })
+    }
+
     const { title, description, state, assigne } = req.body
     const id = tasks.length + 1
     const date = new Date()
     const dateFormat = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+
+    try {
+        if (typeof title != "string") {
+            throw new Error("title")
+        }
+
+        if (typeof description != "string") {
+            throw new Error("description")
+        }
+
+        if (typeof state != "string" || !["todo", "doing", "done"].includes(state)) {
+            throw new Error("state")
+        }
+
+        if (typeof assigne != "string") {
+            throw new Error("assigne")
+        }
+
+    } catch (error) {
+        return res.json({ status: 400, ok: false, error: `Bad Request : ${error.message}` })
+    }
 
     let newTask = {
         id: id,
@@ -61,32 +110,63 @@ app.post("/api/tasks", (req, res) => {
     }
 
     tasks.push(newTask)
-    fs.writeFileSync("./data/data.json", JSON.stringify(tasks, null, 2))
+    try {
+        fs.writeFileSync("./data/data.json", JSON.stringify(tasks, null, 2))
+    } catch (error) {
+        return res.json({ status: 500, ok: false, error: "Internal Server Error" })
+    }
 
-    res.json({ status: 200, tasks: tasks })
+    res.json({ status: 201, ok: true, tasks: tasks })
 })
 
 
 app.patch("/api/tasks/:id", (req, res) => {
-    const { state } = req.body
+    if (!tasks) {
+        return res.json({ status: 500, ok: false, error: "Internal Server Error" })
+    }
+
     const task = getTask(tasks, req.params.id)
+    if (!task) {
+        return res.json({ status: 404, ok: false, error: "Not Found" })
+    }
+
+    const { state } = req.body
+    if (typeof state != "string" || !["todo", "doing", "done"].includes(state)) {
+        return res.json({ status: 400, ok: false, error: "Bad Request : state" })
+    }
 
     task.state = state
-    fs.writeFileSync("./data/data.json", JSON.stringify(tasks, null, 2))
+    try {
+        fs.writeFileSync("./data/data.json", JSON.stringify(tasks, null, 2))
+    } catch (error) {
+        return res.json({ status: 500, ok: false, error: "Internal Server Error" })
+    }
 
-    res.json({ status: 200, tasks: tasks })
+    res.json({ status: 200, ok: true, task: task })
 })
 
 
 app.delete("/api/tasks/:id", (req, res) => {
+    if (!tasks) {
+        return res.json({ status: 500, ok: false, error: "Internal Server Error" })
+    }
+
     const id = req.params.id
     const taskDelete = getTask(tasks, id)
+    if (!taskDelete) {
+        return res.json({ status: 404, ok: false, error: "Not Found" })
+    }
 
     let index = tasks.findIndex(task => task.id == taskDelete.id)
     tasks.splice(index, 1)
 
-    fs.writeFileSync("./data/data.json", JSON.stringify(tasks, null, 2))
-    res.json({ status: 200, tasks: tasks })
+    try {
+        fs.writeFileSync("./data/data.json", JSON.stringify(tasks, null, 2))
+    } catch (error) {
+        return res.json({ status: 500, ok: false, error: "Internal Server Error" })
+    }
+
+    res.json({ status: 200, ok: true, tasks: tasks })
 })
 
 app.listen(port, () => {
