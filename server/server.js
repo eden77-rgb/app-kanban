@@ -1,9 +1,38 @@
-/* API: ExpressJS - Nodemon*/
+/* API: ExpressJS - Nodemon
+ *
+ * GET /health
+ *    200 : OK
+ *    500 : Internal Server Error
+ * 
+ * GET /api/tasks
+ *    200 : OK
+ *    500 : Internal Server Error
+ * 
+ * GET /api/tasks/:id
+ *    200 : OK
+ *    404 : Not Found
+ *    500 : Internal Server Error
+ * 
+ * POST /api/tasks
+ *    201 : Created
+ *    400 : Bad Request
+ *    500 : Internal Server Error
+ * 
+ * PATCH /api/tasks/:id
+ *    200 : OK
+ *    400 : Bad Request
+ *    404 : Not Found
+ *    500 : Internal Server Error
+ * 
+ * DELETE /api/tasks/:id
+ *    200 : OK
+ *    404 : Not Found
+ *    500 : Internal Server Error
+ */
 
 const express = require("express")
 const cors = require("cors")
 const fs = require("fs")
-const { error } = require("console")
 
 const app = express()
 const port = 3000
