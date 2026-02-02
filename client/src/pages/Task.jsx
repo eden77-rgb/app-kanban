@@ -25,14 +25,14 @@ export default function Task() {
             assigne: task.assigne
         }
         setTask(newTask)
-        putTask(newTask)
+        patchTask(e)
     }
 
-    async function putTask(newTask) {
+    async function patchTask(newState) {
         const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newTask)
+            body: JSON.stringify({state: newState})
         })
         console.log(response)
     }
