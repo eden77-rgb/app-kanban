@@ -22,9 +22,9 @@ export function Column({title})
     return (
         <div>
             <div>
-                <h2>{title}</h2>
+                <h2 className="mb-3 font-bold ">{title}</h2>
             </div>
-        <div className="grid-container">
+        <div className="flex flex-col gap-[15px] max-h-[70vh] overflow-y-auto pr-[5px]">
         {
         tasks.map((task) => (title.toLowerCase() == task.state && 
         <Tache key={task.id} task={task}></Tache>

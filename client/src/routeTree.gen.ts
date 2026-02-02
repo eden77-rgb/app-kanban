@@ -11,10 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TaskTaskIdRouteImport } from './routes/task.$taskId'
 import { Route as LayoutKanbanRouteImport } from './routes/_layout.kanban'
 import { Route as LayoutFormRouteImport } from './routes/_layout.form'
 import { Route as LayoutAboutRouteImport } from './routes/_layout.about'
+import { Route as LayoutTaskTaskIdRouteImport } from './routes/_layout.task.$taskId'
 
 const LayoutRoute = LayoutRouteImport.update({
   id: '/_layout',
@@ -23,11 +23,6 @@ const LayoutRoute = LayoutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TaskTaskIdRoute = TaskTaskIdRouteImport.update({
-  id: '/task/$taskId',
-  path: '/task/$taskId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LayoutKanbanRoute = LayoutKanbanRouteImport.update({
@@ -45,20 +40,25 @@ const LayoutAboutRoute = LayoutAboutRouteImport.update({
   path: '/about',
   getParentRoute: () => LayoutRoute,
 } as any)
+const LayoutTaskTaskIdRoute = LayoutTaskTaskIdRouteImport.update({
+  id: '/task/$taskId',
+  path: '/task/$taskId',
+  getParentRoute: () => LayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof LayoutAboutRoute
   '/form': typeof LayoutFormRoute
   '/kanban': typeof LayoutKanbanRoute
-  '/task/$taskId': typeof TaskTaskIdRoute
+  '/task/$taskId': typeof LayoutTaskTaskIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof LayoutAboutRoute
   '/form': typeof LayoutFormRoute
   '/kanban': typeof LayoutKanbanRoute
-  '/task/$taskId': typeof TaskTaskIdRoute
+  '/task/$taskId': typeof LayoutTaskTaskIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -67,7 +67,7 @@ export interface FileRoutesById {
   '/_layout/about': typeof LayoutAboutRoute
   '/_layout/form': typeof LayoutFormRoute
   '/_layout/kanban': typeof LayoutKanbanRoute
-  '/task/$taskId': typeof TaskTaskIdRoute
+  '/_layout/task/$taskId': typeof LayoutTaskTaskIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,13 +81,12 @@ export interface FileRouteTypes {
     | '/_layout/about'
     | '/_layout/form'
     | '/_layout/kanban'
-    | '/task/$taskId'
+    | '/_layout/task/$taskId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LayoutRoute: typeof LayoutRouteWithChildren
-  TaskTaskIdRoute: typeof TaskTaskIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -104,13 +103,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/task/$taskId': {
-      id: '/task/$taskId'
-      path: '/task/$taskId'
-      fullPath: '/task/$taskId'
-      preLoaderRoute: typeof TaskTaskIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_layout/kanban': {
@@ -134,6 +126,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAboutRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/task/$taskId': {
+      id: '/_layout/task/$taskId'
+      path: '/task/$taskId'
+      fullPath: '/task/$taskId'
+      preLoaderRoute: typeof LayoutTaskTaskIdRouteImport
+      parentRoute: typeof LayoutRoute
+    }
   }
 }
 
@@ -141,12 +140,14 @@ interface LayoutRouteChildren {
   LayoutAboutRoute: typeof LayoutAboutRoute
   LayoutFormRoute: typeof LayoutFormRoute
   LayoutKanbanRoute: typeof LayoutKanbanRoute
+  LayoutTaskTaskIdRoute: typeof LayoutTaskTaskIdRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutAboutRoute: LayoutAboutRoute,
   LayoutFormRoute: LayoutFormRoute,
   LayoutKanbanRoute: LayoutKanbanRoute,
+  LayoutTaskTaskIdRoute: LayoutTaskTaskIdRoute,
 }
 
 const LayoutRouteWithChildren =
@@ -155,7 +156,6 @@ const LayoutRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LayoutRoute: LayoutRouteWithChildren,
-  TaskTaskIdRoute: TaskTaskIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
