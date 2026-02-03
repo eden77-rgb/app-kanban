@@ -5,8 +5,12 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 import './index.css'
 
 import { routeTree } from './routeTree.gen'
+import NotFound from './pages/NotFound'
 
-const router = createRouter({ routeTree })  
+const router = createRouter({
+  routeTree,
+  defaultNotFoundComponent: NotFound
+})
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

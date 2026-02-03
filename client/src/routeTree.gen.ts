@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LayoutKanbanRouteImport } from './routes/_layout.kanban'
 import { Route as LayoutFormRouteImport } from './routes/_layout.form'
 import { Route as LayoutAboutRouteImport } from './routes/_layout.about'
+import { Route as Layout404RouteImport } from './routes/_layout.404'
 import { Route as LayoutTaskTaskIdRouteImport } from './routes/_layout.task.$taskId'
 
 const LayoutRoute = LayoutRouteImport.update({
@@ -40,6 +41,11 @@ const LayoutAboutRoute = LayoutAboutRouteImport.update({
   path: '/about',
   getParentRoute: () => LayoutRoute,
 } as any)
+const Layout404Route = Layout404RouteImport.update({
+  id: '/404',
+  path: '/404',
+  getParentRoute: () => LayoutRoute,
+} as any)
 const LayoutTaskTaskIdRoute = LayoutTaskTaskIdRouteImport.update({
   id: '/task/$taskId',
   path: '/task/$taskId',
@@ -48,6 +54,7 @@ const LayoutTaskTaskIdRoute = LayoutTaskTaskIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/404': typeof Layout404Route
   '/about': typeof LayoutAboutRoute
   '/form': typeof LayoutFormRoute
   '/kanban': typeof LayoutKanbanRoute
@@ -55,6 +62,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/404': typeof Layout404Route
   '/about': typeof LayoutAboutRoute
   '/form': typeof LayoutFormRoute
   '/kanban': typeof LayoutKanbanRoute
@@ -64,6 +72,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_layout': typeof LayoutRouteWithChildren
+  '/_layout/404': typeof Layout404Route
   '/_layout/about': typeof LayoutAboutRoute
   '/_layout/form': typeof LayoutFormRoute
   '/_layout/kanban': typeof LayoutKanbanRoute
@@ -71,13 +80,14 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/form' | '/kanban' | '/task/$taskId'
+  fullPaths: '/' | '/404' | '/about' | '/form' | '/kanban' | '/task/$taskId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/form' | '/kanban' | '/task/$taskId'
+  to: '/' | '/404' | '/about' | '/form' | '/kanban' | '/task/$taskId'
   id:
     | '__root__'
     | '/'
     | '/_layout'
+    | '/_layout/404'
     | '/_layout/about'
     | '/_layout/form'
     | '/_layout/kanban'
@@ -126,6 +136,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAboutRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/404': {
+      id: '/_layout/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof Layout404RouteImport
+      parentRoute: typeof LayoutRoute
+    }
     '/_layout/task/$taskId': {
       id: '/_layout/task/$taskId'
       path: '/task/$taskId'
@@ -137,6 +154,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface LayoutRouteChildren {
+  Layout404Route: typeof Layout404Route
   LayoutAboutRoute: typeof LayoutAboutRoute
   LayoutFormRoute: typeof LayoutFormRoute
   LayoutKanbanRoute: typeof LayoutKanbanRoute
@@ -144,6 +162,7 @@ interface LayoutRouteChildren {
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
+  Layout404Route: Layout404Route,
   LayoutAboutRoute: LayoutAboutRoute,
   LayoutFormRoute: LayoutFormRoute,
   LayoutKanbanRoute: LayoutKanbanRoute,

@@ -15,3 +15,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@keyframes smokeMove {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-smoke-move {
+  animation: smokeMove 15s linear infinite;
+}

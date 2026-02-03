@@ -14,7 +14,7 @@ export default function Kanban() {
 
             <button
                 className="mt-6 w-full max-w-[250px] py-4 text-2xl font-bold text-white bg-[#2a2a2a] rounded-lg shadow-lg border border-[#454545] hover:bg-[#3b3b3b] transition-colors duration-200 cursor-pointer"
-                onClick={() => {navigate({to: "/form"})}}        
+                onClick={() => { navigate({ to: "/form" }) }}
             >
                 +
             </button>

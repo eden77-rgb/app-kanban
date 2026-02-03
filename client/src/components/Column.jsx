@@ -2,19 +2,18 @@ import Tache from "./Tache"
 import { useEffect } from "react"
 import { useState } from "react";
 
-export function Column({title})
-{
+export function Column({ title }) {
 
     const [tasks, setTasks] = useState([])
- 
+
     useEffect(() => {
-        
-        async function fetchData(){
+
+        async function fetchData() {
 
             const res = await fetch("http://localhost:3000/api/tasks");
-            const tasks = await res.json();
+            const data = await res.json();
 
-            setTasks(tasks.tasks)
+            setTasks(data.tasks)
         }
         fetchData()
     }, [])
@@ -24,13 +23,13 @@ export function Column({title})
             <div>
                 <h2 className="mb-3 font-bold ">{title}</h2>
             </div>
-        <div className="flex flex-col gap-[15px] max-h-[70vh] overflow-y-auto pr-[5px]">
-        {
-        tasks.map((task) => (title.toLowerCase() == task.state && 
-        <Tache key={task.id} task={task}></Tache>
-        ))}
-
-        </div>
+            <div className="flex flex-col gap-[15px] max-h-[70vh] overflow-y-auto pr-[5px]">
+                {
+                    tasks.map((task) => (title.toLowerCase() == task.state &&
+                        <Tache key={task.id} task={task}></Tache>
+                    ))
+                }
+            </div>
         </div>
     )
 }
