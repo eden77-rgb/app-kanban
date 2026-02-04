@@ -19,7 +19,6 @@ export function Column({ title }) {
         }
         fetchData()
     }, [])
-    console.log(response)
 
     if(!response){
       return <div>
