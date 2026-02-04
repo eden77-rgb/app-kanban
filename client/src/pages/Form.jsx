@@ -1,6 +1,8 @@
+import { useNavigate } from "@tanstack/react-router"
 import { useState } from "react"
 
 export default function Form() {
+    const navigate = useNavigate()
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [status, setStatus] = useState("TODO")
@@ -31,6 +33,8 @@ export default function Form() {
         setDescription("");
         setStatus("TODO");
         setAssignedTo("");
+
+        navigate({to: "/kanban"})
     }
 
     return (

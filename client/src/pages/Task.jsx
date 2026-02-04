@@ -8,13 +8,14 @@ export default function Task() {
     const { taskId } = Route.useParams()
     const [task, setTask] = useState([])
     const [data, setData] = useState()
+    const [response, setResponse] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
             const res = await fetch(`http://localhost:3000/api/tasks/${taskId}`);
             const data = await res.json();
 
-            console.log(data)
+            setResponse(res.ok)
             setData(data)
             setTask(data.task)
         }
@@ -59,6 +60,14 @@ export default function Task() {
             navigate({ to: '/404' })
         }
     }
+
+    if(!response){
+      return <div className="max-w-[600px] mx-auto mt-[50px] bg-[#2a2a2a] p-[40px] rounded-[16px] border border-[#3f3f3f] shadow-[0_10px_25px_rgba(0,0,0,0.5)] text-white font-sans">
+                    <h2 className="mt-0 text-[2rem] text-[#646cff] mb-[20px] border-b-2 border-[#3f3f3f] pb-[15px] font-bold ">Chargement...</h2>
+            </div>
+    }
+
+
 
     return (
         <div className="max-w-[600px] mx-auto mt-[50px] bg-[#2a2a2a] p-[40px] rounded-[16px] border border-[#3f3f3f] shadow-[0_10px_25px_rgba(0,0,0,0.5)] text-white font-sans">

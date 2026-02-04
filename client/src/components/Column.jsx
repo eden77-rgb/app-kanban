@@ -5,6 +5,7 @@ import { useState } from "react";
 export function Column({ title }) {
 
     const [tasks, setTasks] = useState([])
+    const [response, setResponse] = useState(false)
 
     useEffect(() => {
 
@@ -12,11 +13,22 @@ export function Column({ title }) {
 
             const res = await fetch("http://localhost:3000/api/tasks");
             const data = await res.json();
+            setResponse(res.ok)
 
             setTasks(data.tasks)
         }
         fetchData()
     }, [])
+    console.log(response)
+
+    if(!response){
+      return <div>
+                <div>
+                    <h2 className="mb-3 font-bold ">{title}</h2>
+                </div>
+                <div>Chargement...</div>
+            </div>
+    }
 
     return (
         <div>
