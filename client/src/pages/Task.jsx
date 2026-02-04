@@ -23,7 +23,6 @@ export default function Task() {
     }, [taskId])
 
     const handleChange = (e) => {
-        console.log(e.toUpperCase())
         const newTask = {
             title: task.title,
             description: task.description,
@@ -40,14 +39,12 @@ export default function Task() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ state: newState })
         })
-        console.log(response)
     }
 
     async function deleteTask() {
         const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
             method: "DELETE"
         })
-        console.log(response)
     }
 
     const handleDeleteBtn = () => {

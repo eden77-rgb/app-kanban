@@ -14,8 +14,6 @@ export default function Form() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(task)
         })
-
-        console.log(response)
     }
 
     const handleSubmit = (e) => {
