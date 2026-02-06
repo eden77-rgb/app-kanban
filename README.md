@@ -48,7 +48,7 @@ cd server
 npm install
 npm run dev
 ```
-L'API sera accessible sur : `http://localhost:3001`
+L'API sera accessible sur : `http://localhost:3000`
 
 **3. Lancer le Client (React)**
 ```bash
