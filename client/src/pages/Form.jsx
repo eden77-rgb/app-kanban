@@ -14,6 +14,9 @@ export default function Form() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(task)
         })
+        if(response.ok) {
+            navigate({to: "/kanban"})
+        }
     }
 
     const handleSubmit = (e) => {
@@ -31,8 +34,6 @@ export default function Form() {
         setDescription("");
         setStatus("TODO");
         setAssignedTo("");
-
-        navigate({to: "/kanban"})
     }
 
     return (

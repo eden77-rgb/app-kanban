@@ -41,15 +41,13 @@ export default function Task() {
         })
     }
 
-    async function deleteTask() {
+    const deleteTask = async () => {
         const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
             method: "DELETE"
         })
-    }
-
-    const handleDeleteBtn = () => {
-        deleteTask()
-        navigate({ to: '/kanban' })
+        if(response.ok) {
+            navigate({ to: '/kanban' })
+        }
     }
 
     if (data) {
@@ -95,7 +93,7 @@ export default function Task() {
                 <img
                     src={trashImg}
                     className="w-8 h-8 cursor-pointer transition-transform hover:scale-110 object-contain"
-                    onClick={handleDeleteBtn}
+                    onClick={deleteTask}
                     alt="trash"
                 />
             </div>
