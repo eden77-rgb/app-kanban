@@ -85,7 +85,7 @@ L'application communique avec les points de terminaison suivants :
 
 # 🌍 Déploiement
 ## Frontend : ![](https://img.shields.io/badge/-0d1117?style=flat&logo=cloudflare&logoColor=F38020) Cloudflare
-- URL : https://424ede1e.kanban-53y.pages.dev/
+- URL : https://9d59f1da.kanban-53y.pages.dev/kanban
 
 ## Backend : ![](https://img.shields.io/badge/-0d1117?style=flat&logo=railway&logoColor=FFFFFF) Railway
 - URL : https://api-kanban-production.up.railway.app/
