@@ -85,10 +85,10 @@ L'application communique avec les points de terminaison suivants :
 
 # 🌍 Déploiement
 ## Frontend : ![](https://img.shields.io/badge/-0d1117?style=flat&logo=cloudflare&logoColor=F38020) Cloudflare
-- URL : https://9d59f1da.kanban-53y.pages.dev/kanban
+- URL : https://9d59f1da.kanban-53y.pages.dev
 
 ## Backend : ![](https://img.shields.io/badge/-0d1117?style=flat&logo=railway&logoColor=FFFFFF) Railway
-- URL : https://api-kanban-production.up.railway.app/
+- URL : https://api-kanban-production.up.railway.app
 
 <br/>
 🚧 La version déployée est différente de celle présente sur GitHub.
@@ -98,7 +98,3 @@ L'application communique avec les points de terminaison suivants :
 # 👥 Auteurs
 - **Enzo** • [enzzo95](https://github.com/enzzo95)
 - **Eden** • [eden77-rgb](https://github.com/eden77-rgb/)
-
-
-
-
