@@ -33,6 +33,7 @@
 const express = require("express")
 const cors = require("cors")
 const fs = require("fs")
+const { v4: uuidv4 } =  require("uuid")
 
 const app = express()
 const port = 3000
@@ -104,7 +105,7 @@ app.post("/api/tasks", (req, res) => {
     }
 
     const { title, description, state, assigne } = req.body
-    const id = tasks.length + 1
+    const id = uuidv4();
     const date = new Date()
     const dateFormat = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
 
@@ -197,6 +198,7 @@ app.delete("/api/tasks/:id", (req, res) => {
 
     res.json({ status: 200, ok: true, tasks: tasks })
 })
+
 
 app.listen(port, () => {
     console.log("Serveur démarré sur : http://localhost:3000")
