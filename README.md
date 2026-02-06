@@ -90,6 +90,9 @@ L'application communique avec les points de terminaison suivants :
 ## Backend : ![](https://img.shields.io/badge/-0d1117?style=flat&logo=railway&logoColor=FFFFFF) Railway
 - URL : https://api-kanban-production.up.railway.app/
 
+<br/>
+🚧 La version déployée est différente de celle présente sur GitHub.
+
 ---
 
 # 👥 Auteurs
