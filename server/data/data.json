@@ -1,42 +1,106 @@
 [
   {
-    "id": 1,
-    "title": "Initialiser le projet React",
-    "description": "Créer le projet avec create-react-app et configurer les dépendances de base",
-    "state": "done",
-    "assigne": "Enzo",
-    "date": "23-01-2026"
-  },
-  {
-    "id": 3,
-    "title": "Développer la page d'accueil React",
-    "description": "Créer un composant principal, header et footer",
+    "id": "8439c6b9-f06a-44d8-9585-a053f6b70172",
+    "title": "Mettre 20 / 20 à Enzo et Eden",
+    "description": "Au moins donner vos retours",
     "state": "todo",
-    "assigne": "Enzo",
-    "date": "23-01-2026"
+    "assigne": "Antoine Lucsko",
+    "date": "9-2-2026"
   },
   {
-    "id": 4,
-    "title": "Mettre en place la communication frontend/backend",
-    "description": "Créer les appels API et gérer les réponses côté React",
+    "id": "cc5b74ad-d8bc-4ab4-8e0f-e9f6fec9cc94",
+    "title": "Approfondir TypeScript",
+    "description": "Pour être intéressant sur le marché du travail.",
     "state": "todo",
-    "assigne": "Eden",
-    "date": "23-01-2026"
+    "assigne": "EDEN & ENZO",
+    "date": "9-2-2026"
   },
   {
-    "id": 5,
-    "title": "Tester le site et corriger les bugs",
-    "description": "Tester toutes les fonctionnalités et corriger les erreurs",
+    "id": "71089f3a-9024-4d44-bc92-a958f47c809b",
+    "title": "Dormir",
+    "description": "Faire une nuit complete",
     "state": "todo",
-    "assigne": "All",
-    "date": "23-01-2026"
+    "assigne": "EDEN & ENZO",
+    "date": "9-2-2026"
   },
   {
-    "id": 6,
-    "title": "Faire le formulaire",
-    "description": "Faire un formulaire pour ajouter une tache",
+    "id": "a0bbc5af-5fdb-422c-956b-d90f27622e6c",
+    "title": "Passer gold sur Valorant",
+    "description": " Il le faut",
+    "state": "doing",
+    "assigne": "EDEN & ENZO",
+    "date": "9-2-2026"
+  },
+  {
+    "id": "bab1b35b-3722-458e-8b1d-c7d894dd8faa",
+    "title": "Ne plus avoir peur des Merge ",
+    "description": "Apprendre à affronter les conflits Git sans trembler.",
+    "state": "doing",
+    "assigne": "EDEN",
+    "date": "9-2-2026"
+  },
+  {
+    "id": "4dc7d87a-849f-4a68-be14-195189317e26",
+    "title": "Ne plus avoir peur de la CLI Railway ",
+    "description": "Apprendre par cœur la CLI",
+    "state": "doing",
+    "assigne": "ENZO",
+    "date": "9-2-2026"
+  },
+  {
+    "id": "892a6a95-735b-442a-8923-f55d4fa96ac2",
+    "title": "Creer le backend ",
+    "description": "API, SERVER, NODEMON, EXPRESS, GESTION DES ROUTES",
     "state": "done",
     "assigne": "EDEN",
-    "date": "29-1-2026"
+    "date": "9-2-2026"
+  },
+  {
+    "id": "8aa87288-beca-4b1b-867c-8f8541de929f",
+    "title": "Creer le frontend",
+    "description": "INITIALISATION, COMPONENTS, ROUTER, PAGES",
+    "state": "done",
+    "assigne": "ENZO",
+    "date": "9-2-2026"
+  },
+  {
+    "id": "2df979b5-fec5-4d4c-8e1e-80bf0990c95e",
+    "title": "Faire le formulaire ",
+    "description": "Creer le formulaire et le connecter au backend",
+    "state": "done",
+    "assigne": "EDEN",
+    "date": "9-2-2026"
+  },
+  {
+    "id": "cba85ec4-69b7-403c-801d-3d48ef9bd4a4",
+    "title": "Déployer ",
+    "description": "Front cloudflare, back railway",
+    "state": "done",
+    "assigne": "ENZO",
+    "date": "9-2-2026"
+  },
+  {
+    "id": "2314dd00-2074-4c19-b7ab-30321c62fc18",
+    "title": "Faire le CSS avec Tailwind ",
+    "description": "Styliser les pages, components, navbar",
+    "state": "done",
+    "assigne": "GEMINI",
+    "date": "9-2-2026"
+  },
+  {
+    "id": "95be9363-f02b-4163-9dce-b21b97a22c94",
+    "title": "Créer des mini-jeux ",
+    "description": "Pour captiver l'attention du professeur",
+    "state": "done",
+    "assigne": "ENZO",
+    "date": "9-2-2026"
+  },
+  {
+    "id": "2476c103-b161-4bad-a686-888fd834f434",
+    "title": "Creer une page 404 ",
+    "description": "Digne des plus grands sites du web",
+    "state": "done",
+    "assigne": "EDEN",
+    "date": "9-2-2026"
   }
 ]
